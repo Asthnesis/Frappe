@@ -13,7 +13,8 @@ This is a simple Frappe-based Library Management System to demonstrate the follo
 Clone this repo and follow [Frappe Docker Setup](https://github.com/frappe/frappe_docker) to run locally. Install the `library` app using:
 
 # inside your container or dev env
-bench get-app library [GITHUB_URL]
+bench get-app library https://github.com/Asthnesis/library.git
+
 bench --site your-site install-app library
 
 
