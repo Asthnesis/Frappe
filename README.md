@@ -1,40 +1,72 @@
-### library
+# Library Management System (Frappe / ERPNext)
 
-library management
+This is a simple Frappe-based Library Management System to demonstrate the following:
 
-### Installation
+### Features
+- **Books**: Allows a user to add books with rental fees and quantities
+- **Members**: Track users and their outstanding amounts
+-  **Transactions**: Issue/return books with automatic stock and debt tracking
+-  **Payments**: Settle outstanding dues for continued borrowing
+-  **Debt Limit**: Prevent issuing if projected debt exceeds set limit
 
-You can install this app using the [bench](https://github.com/frappe/bench) CLI:
+###  How to Run
+Clone this repo and follow [Frappe Docker Setup](https://github.com/frappe/frappe_docker) to run locally. Install the `library` app using:
 
-```bash
-cd $PATH_TO_YOUR_BENCH
-bench get-app $URL_OF_THIS_REPO --branch develop
-bench install-app library
-```
+# inside your container or dev env
+bench get-app library [GITHUB_URL]
+bench --site your-site install-app library
 
-### Contributing
 
-This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
+###  Screenshots
+- Book
+![Book Form View](image-2.png)
+Create a book and set quantity and fee
+![Book List View](image-1.png)
+View all books and available quantity
 
-```bash
-cd apps/library
-pre-commit install
-```
+- Member
+![Creating a new member](image-3.png)
 
-Pre-commit is configured to use the following tools for checking and formatting your code:
+![Members List](image-11.png)
+View all members and their outstanding amounts
 
-- ruff
-- eslint
-- prettier
-- pyupgrade
+- Issue or Return a book
+![Select member name](image-12.png)
 
-### CI
+![Fill form details](image-13.png)
+Fill form details
+![Submit](image-14.png)
+Submit the form
 
-This app can use GitHub Actions for CI. The following workflows are configured:
+![View all transactions](image-15.png)
+View transaction list
 
-- CI: Installs this app and runs unit tests on every push to `develop` branch.
-- Linters: Runs [Frappe Semgrep Rules](https://github.com/frappe/semgrep-rules) and [pip-audit](https://pypi.org/project/pip-audit/) on every pull request.
+![qty](image-16.png)
+Quantity reduces by 1 to 9
 
+![Return](image-17.png)
+Do a return
+
+![quantity increase](image-18.png)
+The quantity increments by 1 to 10
+
+![outstanding amt](image-19.png)
+Outstanding amount increases by 50
+
+If the member tries to borrow a book that will exceed the fee by 500, a warning is given
+![Fee above 500](image-20.png)
+
+
+A member can clear dues using payment:
+![Payment](image-21.png)
+
+Outstanding amount is therefore reduced to 0 and they can borrow another book
+![0 Outstanding amount](image-22.png)
+
+###  Tech Stack
+- Frappe v15.65.0
+- ERPNext v15.58.2
+- Python 3.10+
 
 ### License
 
